@@ -43,4 +43,4 @@ The project operates under a three-layer functional architecture:
 * `IMC.xlsm`: Macro-enabled Excel workbook containing the visual interface, search formulas, and classification tables.
 * `BMI.bas`: Exported source code module containing the `Height_and_Weight` subroutine for review or direct import.
 
-![Tablero de Control de COVID-19](BMI-I.png)
+![Tablero de Control de COVID-19](BIM-I)
