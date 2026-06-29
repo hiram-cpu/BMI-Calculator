@@ -1,4 +1,4 @@
-# 📊 VBA & Excel IMC Calculator with Dynamic Lookup
+# 📊 VBA & Excel BMI Calculator with Dynamic Lookup
 
 ## 📖 Description
 This project combines the power of **VBA (Visual Basic for Applications)** automation with native **Microsoft Excel** functions to create an efficient system for recording and diagnosing Body Mass Index (BMI).
