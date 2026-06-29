@@ -1,24 +1,44 @@
-# 📊 VBA Height and Weight Data Entry
+# 📊 VBA & Excel IMC Calculator with Dynamic Lookup
 
-## Descripción
-Este repositorio contiene un script desarrollado en Visual Basic for Applications (VBA) para Microsoft Excel. El módulo automatiza la recopilación de datos físicos (altura y peso), asegurando la integridad de la información mediante procesos de validación antes de insertarla en la hoja de cálculo. Este proyecto es una muestra práctica de automatización de tareas y control de flujo en herramientas de análisis de datos.
+## 📖 Description
+This project combines the power of **VBA (Visual Basic for Applications)** automation with native **Microsoft Excel** functions to create an efficient system for recording and diagnosing Body Mass Index (BMI).
 
-## 🚀 Características Principales
-* **Interfaz de Usuario Interactiva:** Utiliza la función `InputBox` para solicitar al usuario que ingrese su altura (en metros) y su peso[cite: 2].
-* **Validación de Tipos de Datos:** Emplea la función `IsNumeric` para verificar rigurosamente que las entradas sean números, previniendo errores de ejecución o corrupción de datos en la hoja de cálculo.
-* **Manejo de Errores y Notificaciones:** 
-  * Despliega un mensaje de error (`vbCritical`) si el usuario introduce texto o valores no válidos[cite: 2].
-  * Muestra una confirmación de éxito (`vbInformation`) cuando los datos se procesan adecuadamente[cite: 2].
-* **Procesamiento de Precisión:** Convierte las entradas a variables de doble precisión (`CDbl`) para mantener la exactitud de los decimales (especialmente útil para la altura en metros) y las asigna automáticamente a las celdas `M17` y `M18`[cite: 2].
+The system uses a macro to ensure clean and validated data capture (weight and height), injects the data into the spreadsheet, and leverages Excel's formula engine (`VLOOKUP`) to process the index and automatically classify the user's nutritional status against standard health ranges.
 
-## 🛠️ Tecnologías Utilizadas
-* **Lenguaje:** Visual Basic for Applications (VBA)[cite: 2]
-* **Entorno:** Microsoft Excel (Estructura XML/Binaria)[cite: 1]
+---
 
-## ⚙️ Instalación y Uso
-1. Abre un libro de Excel y presiona `Alt + F11` para abrir el Editor de Visual Basic (VBE).
-2. Inserta un nuevo módulo (`Insertar > Módulo`).
-3. Copia y pega el código del procedimiento `Sub Height_and_Weight()`[cite: 2].
-4. Ejecuta la macro (presionando `F5` o asignándola a un botón en la hoja).
-5. Ingresa los datos solicitados en las ventanas emergentes[cite: 2].
-6. Revisa las celdas `M17` y `M18` para confirmar que los datos se han insertado correctamente[cite: 2].
+## ⚙️ System Architecture
+The project operates under a three-layer functional architecture:
+
+### 1. Input and Integrity Layer (VBA)
+* **Guided Capture:** Uses `InputBox` pop-ups to request height (in meters) and weight from the user.
+* **Data Validation:** The script uses `IsNumeric` to verify that the entered values are strictly quantitative before interacting with the workbook, preventing run-time errors.
+* **Precise Injection:** Validated data is transformed into double-precision floating-point numbers (`CDbl`) and inserted directly into the assigned cells (`M17` for height and `M18` for weight).
+
+### 2. Processing Layer (Excel Formulas)
+* **Metric Calculation:** The spreadsheet synchronously processes the BMI using the standard mathematical formula:
+  $$\text{BMI} = \frac{\text{Weight (kg)}}{\text{Height (m)}^2}$$
+
+### 3. Classification Layer (`VLOOKUP`)
+* **Dynamic Indexing:** Once the numerical BMI value is obtained, the `VLOOKUP` function is used with **approximate match (`TRUE` / `1`)**.
+* **Reference Matrix:** The value is contrasted against a matrix table parameterized with official WHO ranges (Underweight, Normal, Overweight, Obese), instantly returning the corresponding text diagnosis.
+
+---
+
+## 🚀 Key Features
+* **Zero Data Corruption:** Pre-validation in VBA prevents text or special characters from being entered into the calculation cells.
+* **Functional Separation:** VBA handles workflow automation exclusively, while Excel manages the mathematical model and logical searches, optimizing file performance.
+* **Clean Interface:** Native notifications (`MsgBox`) in `vbInformation` or `vbCritical` format provide feedback based on process success.
+
+---
+
+## 🛠️ Technologies and Functions Used
+* **Language:** VBA (Visual Basic for Applications)
+* **Key VBA Functions:** `InputBox`, `IsNumeric`, `CDbl`, `Range.Value`, `MsgBox`
+* **Key Excel Functions:** `VLOOKUP` (Range lookup with approximate match), Power (`^`).
+
+---
+
+## 📂 Repository Structure
+* `IMC.xlsm`: Macro-enabled Excel workbook containing the visual interface, search formulas, and classification tables.
+* `BMI.bas`: Exported source code module containing the `Height_and_Weight` subroutine for review or direct import.
